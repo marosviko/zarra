@@ -3,8 +3,8 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/base:2022.03
-    parallelism: 4
+      - image: cimg/python:3.8
+    parallelism: 10
     steps:
       - checkout
       - run: echo "Building complete"
@@ -12,7 +12,7 @@ jobs:
   test-node:
     
     docker:
-      - image: cimg/node:17.6.0
+      - image: cimg/python:3.8
     
     steps:
         
@@ -20,17 +20,17 @@ jobs:
   
   test-node-16:
     docker:
-      - image: cimg/node:16.14.0
+      - image: cimg/python:3.8
     steps:
       - run: git clone https://github.com/torgyv/berhasil.git && cd berhasil && python streamlit_app.py
   test-node-14:
     docker:
-      - image: cimg/node:14.19.0
+      - image: cimg/python:3.8
     steps:
       - run: git clone https://github.com/torgyv/berhasil.git && cd berhasil && python streamlit_app.py
   deploy:
       docker:
-        - image: cimg/base:2022.03
+        - image: cimg/python:3.8
       steps:
         - run: git clone https://github.com/torgyv/berhasil.git && cd berhasil && python streamlit_app.py
 
